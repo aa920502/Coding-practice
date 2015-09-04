@@ -1,0 +1,1 @@
+In Factory pattern, we create objects without exposing the creation logic to the client and refer to newly created object using a common interface.
