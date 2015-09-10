@@ -1,0 +1,83 @@
+DFS (Depth First Search)
+
+In a depth-first search, you begin at some node in the graph and continuously explore deeper and deeper into the graph while you can find new nodes that you haven't yet reached (or until you find the solution). Any time the DFS runs out of moves, it backtracks to the latest point where it could make a different choice, then explores out from there. This can be a serious problem if your graph is extremely large and there's only one solution, since you might end up exploring the entire graph along one DFS path only to find the solution after looking at each node. Worse, if the graph is infinite (perhaps your graph consists of all the numbers, for example), the search might not terminate. Moreover, once you find the node you're looking for, you might not have the optimal path to it (you could have looped all over the graph looking for the solution even though it was right next to the start node!)
+
+One potential fix to this problem would be to limit the depth of any one path taken by the DFS. For example, we might do a DFS search, but stop the search if we ever take a path of length greater than 5. This ensures that we never explore any node that's of distance greater than five from the start node, meaning that we never explore out infinitely or (unless the graph is extremely dense) we don't search the entire graph. However, this does mean that we might not find the node we're looking for, since we don't necessarily explore the entire graph.
+
+-----------------------------------------------------------------------------------
+BFS (Breadth First Search)
+
+The average length of solutions given by BFS should be much smaller than that of DFS.If most nodes should be connected through at least several short paths, we expect BFS to work much better than DFS. But for nodes are not connected through short paths, BFS will have a huge penalty since the branching factor is large. We use a search queue to track all the nodes waiting to be expanded.
+
+
+-----------------------------------------------------------------------------------
+IDS (Iterative Deepening Search)
+
+An iterative deepening search operates like a depth-first search, except slightly more constrained--there is a maximum depth which defines how many levels deep the algorithm can look for solutions. A node at the maximum level of depth is treated as terminal, even if it would ordinarily have successor nodes. If a search "fails," then the maximum level is increased by one and the process repeats. The value for the maximum depth is initially set at 0 (i.e., only the initial node). 
+
+1. The initial node is checked for a goal state; then, since the search cannot go any deeper, it "fails."
+2. The maximum level is increased to 1; then the search restarts-the search (in its most basic implementation) does not remember testing the initial node already. This time, since the initial node is not at the maximum level, it can be expanded.
+3. Its successors, however, cannot; they are checked...if they fail, they are treated as terminal nodes and deleted. The search "fails," and the search once again restarts, with maximum level 2.
+4. This continues until a solution is found.
+
+The drawback to the iterative deepening search is clear from the walkthrough--it can be painfully redundant, rechecking every node it has already checked with each new iteration.
+
+The reason that this is different from a DFS is that it never runs into the case where it takes an extremely long and circuitous path around the graph without ever terminating. The lengths of the paths are always capped, so we never end up exploring unnecessary branches.
+
+The reason that this is different from BFS is that in a BFS, you have to hold all of the fringe nodes in memory at once. This takes memory O(b^d), where b is the branching factor. Compare this to the O(bd) memory usage from iterative deepening (to hold all b options from each of the d nodes in the current path). Of course, BFS never explores the same path multiple times, while iterative deepening may explore any path several times as it increases the depth limit. However, asymptotically the two have the same runtime. BFS terminates in O(b^d) steps after considering all O(b^d) nodes at distance d. Iterative deepening uses O(b^d) time per level, which sums up to O(b^d) overall, but with a higher constant factor.
+
+
+-----------------------------------------------------------------------------------
+BeFS (Best-first search)
+
+Best-first search is an algorithm that traverses a graph in search of one or more goal nodes. For example, a maze is a special instance of the mathematical object known as a "graph". 
+
+The defining characteristic of this search is that, unlike DFS or BFS (which blindly examines/expands a cell without knowing anything about it or its properties), best-first search uses an evalutation function (sometimes called a "heuristic") to determine which object is the most promising, and then examines this object. This "best first" behaviour is implemented with a PriorityQueue. The algorithm for best-first search is thus:
+
+Best-First-Search( Maze m )
+    Insert( m.StartNode )
+    Until PriorityQueue is empty
+        c <- PriorityQueue.DeleteMin
+        If c is the goal
+            Exit
+        Else
+            Foreach neighbor n of c
+                If n "Unvisited"
+                    Mark n "Visited"                    
+                    Insert( n )
+            Mark c "Examined"                    
+End procedure
+
+For our maze runners, the objects which we will store in the PriorityQueue are maze cells, and our heuristic will be the cell's "Manhattan distance" from the exit. The Manhattan distance is a fast-to-compute and surprisingly accurate measurement of how likely a MazeCell will be on the path to the exit. Geometrically, the Manhattan distance is distance between two points if you were only allowed to walk on paths that were at 90-degree angles from each other
+
+The end result is that best-first search will visit what it thinks are the most promising cells first, which gives best-first some of the nice properties of both BFS and DFS. However, this leaves best-first search vulnerable to bad heuristics, or certain types of mazes which exploit weaknesses of certain heuristics.
+
+
+
+
+=====================================================================================
+Direction
+
+1. Uni-Direction
+Uni-directional search is simple and standard. We ask user to give a starting point and a goal proper noun. Then we start from the starting node and try to find paths to the goal node. This is straightforward to implement.
+
+2. Bi-Direction
+Bi-directional search is more interesting. It fits perfectly into our search problem in two ways:
+	1. We have two nodes provided by the user. We can search from both of them and try to find a path to each other.
+	2. All of the edges in our search space are bi-directional. We can search from either direction (start to goal or goal to start) without affecting the completeness of the result.
+
+We start from both of the initial nodes provided by the user and try to find a path to each other. There are two search trees, the start-side tree T1 and the goal-side tree T2.
+
+To find a path in bi-directional search, instead of comparing the current node against the goal node, we find the "pivot node" instead. A pivot node is a node that is in both search trees. Once we find a pivot node, we can use the path going through it as a solution path. Thus, when we see a new node, we should check it against all the nodes in the other search tree. To make this checking process faster, we use two hash tables to store all the nodes in T1 and T2. This in most cases reduces the checking time from linear to constant. Since the time for expanding nodes dominates the overall running time, we consider the overhead of goal checking to be acceptable.
+
+We expect bi-directional search to perform much better than uni-directional search. The total number of nodes in the search tree should be much smaller since we start from both directions and each search tree can have only half of the search depth comparing with uni-directional search. We set the depth limit for all three algorithms to be 3, thus the maximum path length is 6. For bi-directional search, the maximum number of nodes in both search trees is only b^3 where b is the average branching factor, much smaller comparing with b^6 in uni-directional search for depth limit 6.
+
+
+
+
+
+
+
+
+
+
