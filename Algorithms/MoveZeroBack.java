@@ -1,6 +1,6 @@
 // Move all 0s to the right of an array.
-//    (1) All the zeroes are at the end of the list
-//    (2) The order of nonzero elements is preserved. m
+// (1) All the zeroes are at the end of the list
+// (2) The order of nonzero elements is preserved. m
 
 
 public class MoveZeroBack {
