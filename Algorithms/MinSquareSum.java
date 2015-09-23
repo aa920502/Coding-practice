@@ -30,6 +30,7 @@ class MinSquareSum{
 	}
 
 	//DP
+	// 1 = 1^2    2 = 1^2 + 1^2   ...
 	public int getMinSquare(int n){
 		int[] dp = new int[n+1];
 		for(int i=1;i<=3;i++) dp[i]=i;

@@ -27,7 +27,6 @@ class CheckTreeHasTwoSameSubtree{
                 res.add(new ArrayList<Integer>());
                 return res;
         }
-        
         List<List<Integer>> left = search(root.left, n1, n2, record);
         List<List<Integer>> right = search(root.right, n1, n2, record);
         List<Integer> inorder = new ArrayList<Integer>();
