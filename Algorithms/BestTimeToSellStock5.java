@@ -1,4 +1,5 @@
-//You can do as many transactions as you want, but after each sell, you need to wait at least one day for next buy;
+//You can do as many transactions as you want, but after each sell, 
+// you need to wait at least one day for next buy;
 
 class BestTimeToSellStock5{
 	  public static int maxProfit(int[] prices){
@@ -14,12 +15,12 @@ class BestTimeToSellStock5{
         bear[0] = 0;
         //初始情况，因为手头没股票，所以盈利是0
         bull[0] = 0-prices[0];
-        //初始情况，我们钱买了股票，所以是 0-prices[0]. 鍥磋鎴戜滑@1point 3 acres
+        //初始情况，我们钱买了股票，所以是 0-prices[0].
         for(int i =  1;i<prices.length;i++){
                 bear[i] = Math.max(bear[i-1],bull[i-1]+prices[i]);
                 //空仓的最大利润的递归式是：bear[i] = max(bear[i-1],bull[i-1]+prices[i]);
                 //意思就是当前最大利润应该为前一天空仓的利润（既我们这一天不做任何买卖）和前一天满仓和今天卖出 两者中的最大值
-                if(i == 1){. 1point3acres.com/bbs
+                if(i == 1){
                         //而对于满仓的话，递归式应该为 bull[i] = max(bull[i-1],bear[i-2]-prices[i])
                         //意思即是 满仓的最大值应该是 前一天满仓，和两天之前空仓今天买入 中的最大值
                         //因为题目限定了要隔一天才能买
