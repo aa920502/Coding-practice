@@ -1,25 +1,27 @@
-// 给一组id和表示每个id出现概率的数组，概率之和为1.要求随机生成id，使得随机出的id满足之前的概率数组。
-// followup:如果id很多，调用这个随机生成方法的次数也很多，怎么优化
+// Given a set of ID, and probability of each ID appearing, sum of the probaility is 1, 
+// Write a program ot generate IDs based on each probability
 
+// Follow up: what if there a lot of IDs and this method is called many times, how to optimize?
 
 class RandomID{
 	public static void main(String[] args){
 		int[] id = {1, 2, 3, 4, 5};
 		double[] probility = {0.2, 0.1, 0.4,0.25,0.05};
-		System.out.println(getRandomID(id, probility)); 
+		
+		for(int i = 0; i< 100; i++)
+			System.out.println(getRandomID(id, probility)); 
 	}
 	
 	private static int getRandomID(int[] id, double[] probility){ 
 		int len = probility.length;
 		double[] sum = new double[len];
 		//the get prefix sum of the probility sum[0] = probility[0];
+		sum[0] = probility[0];
 		for(int i = 1; i < len; i++){
 			sum[i] = sum[i - 1] + probility[i];
-			System.out.println(sum[i]); 
 		}
 
 		double prob = Math.random(); 
-		System.out.println(prob); 
 		if(prob < sum[0]){
 			return id[0]; 
 		}
