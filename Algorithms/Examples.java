@@ -1,4 +1,5 @@
 import java.util.*;
+import java.io.*;
 
 class Examples{
 	public static void main (String[] args){
@@ -74,5 +75,27 @@ class Examples{
 		String s  = "0123";
 		System.out.println(Integer.parseInt(s,4)); // radix 4
 	}
+
+	/***************************************************
+	 JAVA Deque:
+	 		java.util.ArrayDeque
+			java.util.LinkedList
+	****************************************************/
+	public static void test5{
+		Deque<String> dequeA = new LinkedList<>();
+		dequeA.add     ("element 1"); //add element at tail
+		dequeA.addFirst("element 2"); //add element at head
+		dequeA.addLast ("element 3"); //add element at tail
+		Object firstElement = dequeA.remove();
+		Object firstElement = dequeA.removeFirst();
+		Object lastElement  = dequeA.removeLast();
+	}
+
+
+
+
+
+
+
 
 }
