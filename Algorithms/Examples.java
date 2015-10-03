@@ -89,6 +89,10 @@ class Examples{
 		Object firstElement = dequeA.remove();
 		Object firstElement = dequeA.removeFirst();
 		Object lastElement  = dequeA.removeLast();
+		Iterator iterator = dequeA.iterator();
+		while(iterator.hasNext(){
+		  	String element = (String) iterator.next();
+		}
 	}
 
 
