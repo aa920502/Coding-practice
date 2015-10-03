@@ -19,7 +19,7 @@ class FindSubArrayWithGivenSum{
 		int cur = arr[0];
 
 		for(int i=1;i<n;i++){
-			while(cur > sum && start<i-1){
+			while(cur > sum && start<i){
 				cur = cur - arr[start];
 				start ++;
 			}
@@ -34,7 +34,7 @@ class FindSubArrayWithGivenSum{
 	}
 
 	public static void main(String[] args){
-		int[] arr = new int[]{15, 2, 4, 8, 9, 5, 10, 23};
-		System.out.println(subArraySum(arr,arr.length,15));
+		int[] arr = new int[]{7, 2, 4, 8, 9, 5, 10, 23};
+		System.out.println(subArraySum(arr,arr.length,25));
 	}
 }
