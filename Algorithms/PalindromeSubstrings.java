@@ -1,23 +1,30 @@
 
 //Return all palindrome substrings in a string
+import java.util.*;
 
 class PalindromeSubstrings{
+
+	static HashSet<String> res;
+
 	public static int Partition(String s) {
-		int count = 0;
+		
+		res = new HashSet<>();
+		
 		for (int i = 0; i < s.length(); i++) {
-			for (int l = i, r = i; l >= 0 && r < s.length() 
-						&& s.charAt(l) == s.charAt(r); l--, r++) {
-				count++; 
-			}
-			for (int l = i, r = i + 1; l >= 0 && r < s.length() 
-						&& s.charAt(l) == s.charAt(r); l--, r++) {
-				count++;
-			}
+			
+			// odd length
+			for (int l = i, r = i; l >= 0 && r < s.length() && s.charAt(l) == s.charAt(r); l--, r++) 
+				res.add(s.substring(l,r+1));
+
+			//even length
+			for (int l = i, r = i + 1; l >= 0 && r < s.length() && s.charAt(l) == s.charAt(r); l--, r++) 
+				res.add(s.substring(l,r+1));
 		}
-		return count;
+		return res.size();
 	}
 	public static void main(String[] args){
-		System.out.println(Partition("aba"));
-		System.out.println(Partition("abba"));
+		//System.out.println(Partition("aba"));
+		System.out.println(Partition("abbafagb"));
+		for(String s : res) System.out.println(s);
 	}
 }
