@@ -11,7 +11,7 @@
 // Input: arr[] = {1, 4}, sum = 0
 // Output: No subarray found
 
-
+import java.util.*;
 class FindSubArrayWithGivenSum{
 	//Time complexity: O(n), Space: O(1)
 	//Assumption: elements are all positive
@@ -35,7 +35,37 @@ class FindSubArrayWithGivenSum{
 	}
 
 	public static void main(String[] args){
-		int[] arr = new int[]{7, 2, 4, 8, 9, 5, 10, 23};
-		System.out.println(subArraySum(arr,arr.length,25));
+		int[] arr = new int[]{7, 22, 4, 8, 9, -5, 10, 23};
+		System.out.println(subArraySum2(arr,38));
 	}
+
+	// What if the array contains negative number?
+    static Boolean subArraySum2(int arr[], int target){
+        // Creates an empty hashMap hM
+        HashMap<Integer, Integer> hM = new HashMap<Integer, Integer>();
+         
+        // Initialize sum of elements
+        int sum = 0;        
+         
+        // Traverse through the given array
+        for (int i = 0; i < arr.length; i++){   
+            // Add current element to sum
+            sum += arr[i];
+             
+            // Return true in following cases
+            // a) Current element is 0
+            // b) sum of elements from 0 to i is 0
+            // c) sum is already present in hash map
+            if (arr[i] == target || sum == target || hM.get(sum-target) != null){                            
+            	System.out.println(hM.get(sum-target)+1 + " to " + i);
+               	return true;
+           	}
+             
+            // Add sum to hash map
+            hM.put(sum, i);
+        }    
+         
+        // We reach here only when there is no subarray with 0 sum
+        return false;
+    }        
 }
