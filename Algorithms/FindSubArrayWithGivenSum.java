@@ -14,6 +14,7 @@
 
 class FindSubArrayWithGivenSum{
 	//Time complexity: O(n), Space: O(1)
+	//Assumption: elements are all positive
 	public static int subArraySum(int[] arr, int n, int sum){
 		int start = 0;
 		int cur = arr[0];
