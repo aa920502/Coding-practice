@@ -36,6 +36,8 @@ class PrintAllPaths{
 		if(root.right!=null) helper(res,ll,root.right);
 	}
 
+
+
 	public static void main(String[] args){
 		TreeNode root = new TreeNode(1);
 		root.left = new TreeNode(5);

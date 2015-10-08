@@ -65,10 +65,12 @@ class SerializeDeSerializeNaryTree{
 				queue.offer(left); 
 			if(right != null)
 				queue.offer(right); 
-		}s
+		}
 
 		return root;
 	}
+}
+
 
 
 
