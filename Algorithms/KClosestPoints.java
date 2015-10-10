@@ -12,18 +12,18 @@ class KClosestPoints{
 	    }
 	}
 
-	//Quick select   O(n)
-	public static double kthSmallest(final double[] A, final int p, final int r, final int k) {
-	    if (p < r) {
-	        final int q = RandomizedPartition(A, p, r);
+	//Quick select: O(n)    return kth largest value in the array
+	public static double kthSmallest(final double[] A, final int start, final int end, final int k) {
+	    if (start < end) {
+	        final int q = partition(A, start, end);
 
-	        final int n = q - p + 1;
+	        final int n = q - start + 1;
 	        if (k == n) {
 	            return A[q];
 	        } else if (k < n) {
-	            return kthSmallest(A, p, q - 1, k);
+	            return kthSmallest(A, start, q - 1, k);
 	        } else {
-	            return kthSmallest(A, q + 1, r, k - n);
+	            return kthSmallest(A, q + 1, end, k - n);
 	        }
 	    } else {
 	        return Double.MIN_VALUE;
@@ -37,18 +37,13 @@ class KClosestPoints{
 
 	    for (j = p; j < r; j++) {
 	        if (A[j] <= pivot) {
-	            swap(A, ++i, j);
+	            swap(A, i+1, j);
+	            i++;
 	        }
 	    }
 
 	    swap(A, i + 1, r);
 	    return i + 1;
-	}
-
-	private static int RandomizedPartition(final double[] A, final int p, final int r) {
-	    final int i = (int) Math.round(p + Math.random() * (r - p));
-	    swap(A, i, r);
-	    return partition(A, p, r);
 	}
 
 
