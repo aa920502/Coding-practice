@@ -36,34 +36,6 @@ public class TaskArrangeMentI {
 
 	//Followup 1: what if k is small?  maintain a map of size k, 
 	// <Charater, Integer> Integer is number of time left for a task to be reactivated
-	public static int getTime2(String task, int k) {
-	    if (task == null || task.length() == 0) return 0;
-
-	    if (k == 0) return task.length();
-
-	    Map<Character, Integer> lastTime = new HashMap<Character, Integer>();
-	    int count = 0;
-	    for (int i = 0; i < task.length(); i++) {
-	        count++;
-	        if (lastTime.containsKey(task.charAt(i))) {
-	            int last = lastTime.get(task.charAt(i));
-	            if (count - last <= k) {
-	                count = last + k +1;
-	            }
-	        }
-	        lastTime.put(task.charAt(i), count);
-
-	        Set<Character> set = new HashSet<>(lastTime.keySet());
-	        for (char c : set) {
-
-	            if (count - lastTime.get(c) > k) {
-	                lastTime.remove(c);
-	            }
-	        }
-	        System.out.println("Size: " + lastTime.size());
-	    }
-	    return count;
-	}
 
 }
 

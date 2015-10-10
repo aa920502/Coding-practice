@@ -20,6 +20,32 @@ public class MoveZeroBack {
 	        arr[count++] = 0;
 	}
 
+
+	// two pointers
+	static void pushZerosToEnd(int nums[]){
+		if(nums==null||nums.length==0) return;
+        int left = 0;
+        int right = nums.length-1;
+        
+        while(left<right){
+            while(left<nums.length&&nums[left]!=0){
+                left++;
+            }
+            while(right>=0 && nums[right]==0){
+                right--;
+            }
+            if(left>=right) break;
+            else{
+                int temp = nums[left];
+                nums[left] = nums[right];
+                nums[right] = temp;
+            }
+            left++;
+            right--;
+        }
+        return;
+	}
+
 	public static void main(String[] args){
 		int[] arr = new int[]{0,1,2,3,0,4,5,6,0};
 		pushZerosToEnd(arr);
