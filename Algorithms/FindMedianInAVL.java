@@ -2,18 +2,15 @@
 
 
 public class FindMedianInAVL {
-	// Inorder traversal of AVL tree returns sorted sequence
+
 	public static double findMedian(TreeNode root) {
-		if (root == null) {
-			return 0;
-		}
+		if (root == null) return 0;
+		
 		int treeSize = countSize(root);
-		if (treeSize % 2 == 0) {
+		if (treeSize % 2 == 0) 
 			return (findKth(root, (treeSize + 1) / 2) + findKth(root, (treeSize + 1) / 2 + 1)) / 2;
-		}
-		else { // if have odd number, then just need to find the middle one
-			return findKth(root, (treeSize + 1) / 2);
-		}
+		// if have odd number, then just need to find the middle one
+		else return findKth(root, (treeSize + 1) / 2);
 	}
 	
 	public static double findKth(TreeNode root, int k) {
@@ -32,8 +29,8 @@ public class FindMedianInAVL {
 		if (root == null) {
 			return 0;
 		}
-		int leftSize = countSize(root.left);
-		int rightSize = countSize(root.right);
-		return leftSize + 1 + rightSize;
+		int left = countSize(root.left);
+		int right = countSize(root.right);
+		return 1 + left + rigth;
 	}
 }
