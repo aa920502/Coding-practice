@@ -11,27 +11,29 @@ class PrefixForEveryString{
 		while(strings.size()>0){
 			ArrayList<String> temp = new ArrayList<String>();
 			temp.add(strings.get(0));
-
+			//Group by same first character
 			for(int i=1; i<strings.size(); i++){
 				if(strings.get(0).charAt(0)==strings.get(i).charAt(0)){
 					temp.add(strings.get(i));
 				}
 			}
 
-			for(String s : temp) strings.remove(s);
+			for(String s : temp) 
+				strings.remove(s);
 
 			if(temp.size() == 1){
 				res.add(temp.get(0));
 			}
 			else{
-				String commonPrefix = GetCommonPrefix(temp);
+				String commonPrefix = longestCommonPrefix(temp);
 				res.add(commonPrefix);
 			}
 		}
 		return res;
 	}
 
-	private static String GetCommonPrefix(ArrayList<String> temp){
+	//Longest Common Prefix Subroutine
+	private static String longestCommonPrefix(ArrayList<String> temp){
 		String word = temp.get(0);
 		int prefixlen = word.length();
 

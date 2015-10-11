@@ -7,19 +7,25 @@ class HighestSmallerNumInSortedArr{
 		int high = nums.length-1;
 		while(low < high){
 			int mid = low + (high - low)/2;
-			if(nums[mid]>=target){
+			if(nums[mid]==target){
+				return nums[mid-1];
+			}
+			else if(nums[mid]>target){
 				if(nums[mid-1]<target) return nums[mid-1];
-				else high = mid;
+				else{
+					high = mid-1;
+				}
 			}
 			else{
-				low = mid;
+				if(nums[mid+1]>target) return nums[mid];
+				low = mid+1;
 			}
 		}
 		return 0;
 	}
 
 	public static void main(String[] args){
-		int[] input = new int[]{1,2,3,4,6,8,9,10,13,14,15,17,19};
-		System.out.println(Largest(input,12));
+		int[] input = new int[]{1,2,3,4,6,8,9,10,13,15,17,19,24};
+		System.out.println(Largest(input,22));
 	}
 }

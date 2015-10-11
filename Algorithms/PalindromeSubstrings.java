@@ -1,5 +1,7 @@
 
-//Return all palindrome substrings in a string
+//Return all palindrome substrings of a string
+
+
 import java.util.*;
 
 class PalindromeSubstrings{
@@ -24,7 +26,8 @@ class PalindromeSubstrings{
 	}
 	public static void main(String[] args){
 		//System.out.println(Partition("aba"));
-		System.out.println(Partition("abbafagb"));
-		for(String s : res) System.out.println(s);
+		System.out.println(Partition("abbafagbhh"));
+		for(String s : res) 
+			System.out.println(s);
 	}
 }

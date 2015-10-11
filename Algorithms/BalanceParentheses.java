@@ -13,12 +13,14 @@ class BalanceParentheses{
 	// Stack stores indexes of invalid parentheses
 	public static String balance(String s) {
 		Stack<Integer> stack = new Stack<>();
-		StringBuilder sb = new StringBuilder(static);
+		StringBuilder sb = new StringBuilder(s);
+
 		for(int i=0; i<s.length(); i++) {
-			int c = s.charAt(i);
+			char c = s.charAt(i);
 			if(stack.isEmpty() || c == '(') {
 				stack.push(i);
-			} else {
+			} 
+			else {
 				int top = stack.peek();
 				if(s.charAt(top) == ')') {
 					stack.push(i);
@@ -26,10 +28,11 @@ class BalanceParentheses{
 					stack.pop();
 				}
 			}
-			while(!stack.isEmpty()) {
-				sb.deleteCharAt(stack.pop());
-			}
-			return sb.toString();
 		}
+		while(!stack.isEmpty()) {
+			sb.deleteCharAt(stack.pop());
+		}
+		return sb.toString();
+	}
 
 }
