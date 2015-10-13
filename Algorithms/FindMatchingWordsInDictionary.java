@@ -55,8 +55,12 @@ class FindMatchingWordsInDictionary{
 	public static void main(String[] args){
         String[] dict = {"a", "car", "aca", "art", "rac", "bar", "aaa"};
         FBTrie root = new FBTrie('\0');
-        for(String s: dict) root.insert(root, s);
+        
+        for(String s: dict) 
+            root.insert(root, s);
+        
         char[] result = new char[256];
+        
         String s = "acart";
         int[] input = new int[26];
         for(char c: s.toCharArray()){

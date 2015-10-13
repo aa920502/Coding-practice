@@ -1,4 +1,4 @@
-
+// Find distance from root to node in binary tree
 
 public class DistanceRootToNode {
 

@@ -34,16 +34,13 @@ class FindSubArrayWithGivenSum{
 		return 0;
 	}
 
-	public static void main(String[] args){
-		int[] arr = new int[]{7, 22, 4, 8, 9, -5, 10, 23};
-		System.out.println(subArraySum2(arr,38));
-	}
 
 	// What if the array contains negative number?
     static Boolean subArraySum2(int arr[], int target){
         // Creates an empty hashMap hM
         HashMap<Integer, Integer> hM = new HashMap<Integer, Integer>();
-         
+        hM.put(0,-1);
+        
         // Initialize sum of elements
         int sum = 0;        
          
@@ -67,5 +64,12 @@ class FindSubArrayWithGivenSum{
          
         // We reach here only when there is no subarray with 0 sum
         return false;
-    }        
+    }       
+
+
+
+	public static void main(String[] args){
+		int[] arr = new int[]{7, 22, 4, 8, 9, -5, 10, 23};
+		System.out.println(subArraySum2(arr,38));
+	} 
 }

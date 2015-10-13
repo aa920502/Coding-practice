@@ -13,39 +13,27 @@ class KClosestPoints{
 	}
 
 	//Quick select: O(n)    return kth largest value in the array
-	public static double kthSmallest(final double[] A, final int start, final int end, final int k) {
-	    if (start < end) {
-	        final int q = partition(A, start, end);
+	public static double kthSmallest(final double[] A, final int lo, final int high, final int k) {
+        int i = lo, j= high - 1;
+        double pivot = A[high];
+        while(i<=j){
+        	if(A[i]>pivot){
+        		swap(A,i,j);
+        		j--;
+        	}
+        	else i++;
+        }
+        swap(A,i,high);
 
-	        final int n = q - start + 1;
-	        if (k == n) {
-	            return A[q];
-	        } else if (k < n) {
-	            return kthSmallest(A, start, q - 1, k);
-	        } else {
-	            return kthSmallest(A, q + 1, end, k - n);
-	        }
-	    } else {
-	        return Double.MIN_VALUE;
-	    }
+        final int m = i - lo + 1;
+        if (m == k) {
+            return A[i];
+        } else if (m > k) {
+            return kthSmallest(A, lo, i - 1, k);
+        } else {
+            return kthSmallest(A, i + 1, high, k - m);
+        }
 	}
-
-	private static int partition(final double[] A, final int p, final int r) {
-	    final double pivot = A[r];
-	    int i = p - 1;
-	    int j = p;
-
-	    for (j = p; j < r; j++) {
-	        if (A[j] <= pivot) {
-	            swap(A, i+1, j);
-	            i++;
-	        }
-	    }
-
-	    swap(A, i + 1, r);
-	    return i + 1;
-	}
-
 
 	public static Point[] closestkWithOrderStatistics(final Point points[], final int k) {
 	    final int n = points.length;

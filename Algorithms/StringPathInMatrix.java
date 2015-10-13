@@ -25,7 +25,8 @@ class StringPathInMatrix{
         if (helper(matrix, rows, cols, i - 1, j, str, k + 1, visited)
                 || helper(matrix, rows, cols, i + 1, j, str, k + 1, visited)
                 || helper(matrix, rows, cols, i, j - 1, str, k + 1, visited)
-                || helper(matrix, rows, cols, i, j + 1, str, k + 1, visited)) {
+                || helper(matrix, rows, cols, i, j + 1, str, k + 1, visited)) 
+        {
             return true;
         }
         visited[index] = 0;

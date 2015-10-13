@@ -27,19 +27,22 @@ class MedianInUnsortedArr{
             return findK(A, p + 1, end, k - (p - start + 1));
         }
     }
+
     public static void swap(int[] A, int src, int des) {
         int temp = A[src];
         A[src] = A[des];
         A[des] = temp;
-
     }
 
     public static void GetMedian(int[] A){
-    	System.out.println(findK(A,0,A.length-1,A.length/2));
+        if(A.length % 2 ==1)
+    	   System.out.println(findK(A,0,A.length-1,A.length/2+1));
+        if(A.length % 2 == 0)
+            System.out.println((findK(A,0,A.length-1,A.length/2)+findK(A,0,A.length-1,A.length/2 + 1))/2);
     }
 
     public static void main(String[] args){
-    	int[] tmp = new int[]{10,3,8,2,9,5,7,1,4,6};
+    	int[] tmp = new int[]{10,3,8,2,9,5,7,1,4,6,11};
     	GetMedian(tmp);
     }
 }

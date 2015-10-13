@@ -21,9 +21,8 @@ public class TaskArrangeMentI {
 				if (count - last <= k) {
 					count = last + k + 1;
 				}
-				lastTime.put(task.charAt(i), count);
 			}
-			else lastTime.put(task.charAt(i), count);
+			lastTime.put(task.charAt(i), count);
 		}
 		return count;
 	}
