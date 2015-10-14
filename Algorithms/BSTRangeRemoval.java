@@ -39,7 +39,7 @@ class BSTRangeRemoval{
 		n.right.left = new TreeNode(25);
 		n.right.right = new TreeNode(35);
 
-		TreeNode res = RemoveOutsideRange(n,8,26);
+		TreeNode res = RemoveOutsideRange(n,8,31);
 		Inorder(res);
 	}
 }

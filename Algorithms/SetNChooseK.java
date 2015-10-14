@@ -24,6 +24,7 @@ class SetNChooseK{
 	}
 
 	//Follow up 
+	//Use boolean[] used to avoid second calls
 	public void Print2(Character[] set, int k){
 		String s = "";
 		Arrays.sort(set);

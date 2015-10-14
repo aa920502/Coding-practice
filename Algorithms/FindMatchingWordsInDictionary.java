@@ -59,8 +59,9 @@ class FindMatchingWordsInDictionary{
         for(String s: dict) 
             root.insert(root, s);
         
+        //Result char array
         char[] result = new char[256];
-        
+        //String to search
         String s = "acart";
         int[] input = new int[26];
         for(char c: s.toCharArray()){

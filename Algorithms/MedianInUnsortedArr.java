@@ -8,15 +8,15 @@ class MedianInUnsortedArr{
         if (end - start <= 0) {
             return A[start];
         }
-        int pivotPos = start + (end - start) / 2;
-        int pivot = A[pivotPos];
-        swap(A, pivotPos, end);
+        int pivot = A[end];
+        int j = end-1;
         int p = start;
-        for (int i = start; i < end; i++) {
-            if (A[i] <= pivot) {
-                swap(A, p, i);
-                p++;
+        while(p<=j) {
+            if (A[p] <= pivot) {
+                swap(A, p, j);
+                j--;
             }
+            else p++;
         }
         swap(A, p, end);
         if (p - start + 1 == k) {
@@ -36,9 +36,9 @@ class MedianInUnsortedArr{
 
     public static void GetMedian(int[] A){
         if(A.length % 2 ==1)
-    	   System.out.println(findK(A,0,A.length-1,A.length/2+1));
+    	   System.out.println(findK(A,0,A.length-1,(A.length+1)/2));
         if(A.length % 2 == 0)
-            System.out.println((findK(A,0,A.length-1,A.length/2)+findK(A,0,A.length-1,A.length/2 + 1))/2);
+            System.out.println((findK(A,0,A.length-1,(A.length+1)/2)+findK(A,0,A.length-1,(A.length+1)/2 + 1))/2);
     }
 
     public static void main(String[] args){

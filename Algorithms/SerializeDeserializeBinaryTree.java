@@ -1,35 +1,77 @@
-//Serialize/ Deserialize binary tree
+//Serialize an Binary Tree, so that it can be saved into a file, also make sure it can be deserialized back
 
 class SerializeDeserializeBinaryTree{
 	public String serialize(TreeNode root) {
-        StringBuilder sb = new StringBuilder();
-        serialize(root, sb);
-        return sb.toString();
-    }
-    
-    private void serialize(TreeNode root, StringBuilder sb) {
-        if (sb.length() != 0) sb.append(" ");
-        if (root == null) {
-            sb.append("#");
-            return;
-        }
-        sb.append(root.val);
-        serialize(root.left, sb);
-        serialize(root.right, sb);
-    }
-    
-    public TreeNode deserialize(String data) {
-        String[] labels = data.split(" ");
-        int[] i = { 0 };
-        return deserialize(labels, i);
-    }
-    
-    private TreeNode deserialize(String[] labels, int[] i) { 
-        String label = labels[i[0]++];
-        if (label.equals("#")) return null;
-        TreeNode root = new TreeNode(Integer.valueOf(label));
-        root.left = deserialize(labels, i);
-        root.right = deserialize(labels, i);
-        return root;
-    }
+		// write your code here
+		StringBuffer buffer = new StringBuffer(); 
+		Queue<TreeNode> queue = new LinkedList<TreeNode>();
+		if(root != null){ 
+			queue.offer(root); 
+			buffer.append(root.val);
+		}
+		while(!queue.isEmpty()){ 
+			int size = queue.size();
+			for(int i = 0; i < size; i++){ 
+				TreeNode node = queue.poll();
+				if(node.left == null){ 
+					buffer.append(",#");
+				} 
+				else { 
+					buffer.append(","+node.left.val); 
+					queue.offer(node.left);
+				}
+				if(node.right == null){ 
+					buffer.append(",#");
+				} 
+				else { 
+					buffer.append(","+node.right.val); 
+					queue.offer(node.right);
+				} 
+			}
+		}
+		return buffer.toString(); 
+	}
+
+	/**
+	* This method will be invoked second, the argument data is what exactly 
+	* you serialized at method "serialize", that means the data is not given by 
+	* system, it's given by your own serialize method. So the format of data is 
+	* designed by yourself, and deserialize it here as you serialize it in
+	* "serialize" method.
+	*/
+
+	public TreeNode deserialize(String data) {
+		// write your code here
+		if(data == null || data.length() == 0) return null; 
+
+		Queue<TreeNode> queue = new LinkedList<TreeNode>();
+		String[] arr = data.split(",");
+
+		TreeNode root = new TreeNode(Integer.parseInt(arr[0])); 
+		queue.offer(root);
+		
+		for(int i = 1; i < arr.length; i++){
+			TreeNode left = null, right = null; 
+			if(!arr[i].equals("#")){
+				left = new TreeNode(Integer.parseInt(arr[i])); 
+			}
+			if(++i < data.length() && !arr[i].equals("#")){
+				right = new TreeNode(Integer.parseInt(arr[i]));
+			}
+			TreeNode parent = queue.poll(); 
+			parent.left = left;
+			parent.right = right;
+			if(left != null)
+				queue.offer(left); 
+			if(right != null)
+				queue.offer(right); 
+		}
+
+		return root;
+	}
 }
+
+
+
+
+

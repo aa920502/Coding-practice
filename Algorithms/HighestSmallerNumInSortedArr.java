@@ -12,9 +12,7 @@ class HighestSmallerNumInSortedArr{
 			}
 			else if(nums[mid]>target){
 				if(nums[mid-1]<target) return nums[mid-1];
-				else{
-					high = mid-1;
-				}
+				high = mid-1;
 			}
 			else{
 				if(nums[mid+1]>target) return nums[mid];
