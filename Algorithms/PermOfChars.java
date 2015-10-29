@@ -15,10 +15,9 @@ class PermOfChars{
 		}
 
 		for(int j=0;j<=i;j++){
-			int index = j;
-			sb.insert(index,l.get(i));
+			sb.insert(j,l.get(i));
 			helper(i+1,sb,res,l);
-			sb.deleteCharAt(index);
+			sb.deleteCharAt(j);
 		}
 	}
 

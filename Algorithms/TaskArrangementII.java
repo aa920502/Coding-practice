@@ -43,40 +43,42 @@ class TaskArrangementII {
 			lastTime.put(count.get(letter).letter, -1);
 		}
 
-		int shortestTime = 0;
+		int current = 0;
 		StringBuilder result = new StringBuilder();
 		while (!queue.isEmpty()) { 
+			current ++;
+			
 			List<Node> notValid = new ArrayList<Node>();
 			Node cur;
 			// If current top task in the queue does not fulfill time requirement,
 			// temporarily add it to notValid array, try other tasks,
 			// at the end, add them back
-			while (!queue.isEmpty() && !isValid(shortestTime, lastTime.get(queue.peek().letter), k)) { // worstcase : nlog(n)
+			while (!queue.isEmpty() && !isValid(current, lastTime.get(queue.peek().letter), k)) { // worstcase : nlog(n)
 				Node tmp = queue.poll();
 				notValid.add(tmp);
 			}
 			//No task executable at this time
 			if (queue.isEmpty()) {
 				result.append(" ");
-				shortestTime++;
 			}
+			// Have executable task(s)
 			else {
 				cur = queue.poll();
 				cur.num--; // update remain task number
-				lastTime.put(cur.letter, shortestTime); //update last time
+				lastTime.put(cur.letter, current); //update last time in map
 				if (cur.num != 0) {
 					queue.add(cur);
 				}
 				result.append(cur.letter);
-				shortestTime++;
 			}
+			// Add current not available tasks back
 			for (Node node : notValid) { // worstCase: nlog(n)
 				queue.add(node);
 			}
 		}
 
 		System.out.println(result.toString());
-		return shortestTime;
+		return current;
 	}
 	
 	private static boolean isValid(int curTime, int lastTime, int k) {

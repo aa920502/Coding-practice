@@ -5,7 +5,7 @@ class BinaryNumAddOneWithoutPlus{
 	//Suppose n is a 32-bit integer
 	 public static int add(int n) {
         for(int i = 0; i < 32; i++) {
-            if (((1 << i) & n) == 0){      //until we find the first 1 bit
+            if (((1 << i) & n) == 0){      //until we find the first 1 bit from left
                 n = n | (1 << i);
                 break;
             }

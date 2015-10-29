@@ -5,7 +5,7 @@ class HighestSmallerNumInSortedArr{
 	public static int Largest(int[] nums, int target){
 		int low = 0;
 		int high = nums.length-1;
-		while(low < high){
+		while(low <= high){
 			int mid = low + (high - low)/2;
 			if(nums[mid]==target){
 				return nums[mid-1];
@@ -23,7 +23,8 @@ class HighestSmallerNumInSortedArr{
 	}
 
 	public static void main(String[] args){
-		int[] input = new int[]{1,2,3,4,6,8,9,10,13,15,17,19,24};
-		System.out.println(Largest(input,22));
+		int[] input = new int[]{1,2,3,4,6,10,13,15,17,19,21,24};
+		for(int i=2;i<=12;i++)
+			System.out.println(Largest(input,i));
 	}
 }

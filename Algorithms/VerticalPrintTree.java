@@ -45,7 +45,7 @@ public class VerticalPrintTree{
         ArrayList<ArrayList<String>> left = new ArrayList<ArrayList<String>>();
         printHelper(0, root, left, right);
         // Print result
-        for(int i = left.size() - 1; i > 0; i--){
+        for(int i = left.size() - 1; i >= 0; i--){
             System.out.println(left.get(i));
         }
         for(int i = 0; i < right.size(); i++){
@@ -56,7 +56,7 @@ public class VerticalPrintTree{
      static void printHelper(int index, TreeNode root, ArrayList<ArrayList<String>> left, ArrayList<ArrayList<String>> right){
         // Base case
         if(root == null) return;
-        // Normal case
+        
         if(index >= 0){
             while(right.size() <= index){
                 right.add(new ArrayList<String>());
@@ -64,10 +64,10 @@ public class VerticalPrintTree{
             right.get(index).add(root.data);
         }
         else{
-            while(left.size() <= -index){
+            while(left.size() < -index){
                 left.add(new ArrayList<String>());
             }
-            left.get(-index).add(root.data);
+            left.get(-index-1).add(root.data);
         }
         // Recurse
         printHelper(index - 1, root.left, left, right);

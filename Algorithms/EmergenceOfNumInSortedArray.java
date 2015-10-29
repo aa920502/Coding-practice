@@ -11,7 +11,7 @@ class EmergenceOfNumInSortedArray{
 
 		int res = 0;
 
-		while(low < high){
+		while(low <= high){
 			int mid = low + (high - low)/2;
 			if(input[mid]==num){
 				res = 1;
@@ -29,7 +29,7 @@ class EmergenceOfNumInSortedArray{
 				low = mid+1;
 			}
 			else{
-				high = mid;
+				high = mid-1;
 			}
 		}
 		return res;

@@ -13,7 +13,7 @@ class KClosestPoints{
 	}
 
 	//Quick select: O(n)    return kth largest value in the array
-	public static double kthSmallest(final double[] A, final int lo, final int high, final int k) {
+	public static int kthSmallest(final double[] A, final int lo, final int high, final int k) {
         int i = lo, j= high - 1;
         double pivot = A[high];
         while(i<=j){
@@ -35,18 +35,18 @@ class KClosestPoints{
         }
 	}
 
-	public static Point[] closestkWithOrderStatistics(final Point points[], final int k) {
+	public static Point[] FindKClosest(final Point points[], final int k) {
 	    final int n = points.length;
 	    final double[] dist = new double[n];
 	    for (int i = 0; i < n; i++) {
 	        dist[i] = GetDist(points[i]);
 	    }
+	    // Find kth largest value among all distance values
 	    final double kthMin = kthSmallest(dist, 0, n - 1, k);
 
 	    final Point[] result = new Point[k];
 	    for (int i = 0, j = 0; i < n && j < k; i++) {
-	        final double d = GetDist(points[i]);
-	        if (d <= kthMin) {
+	        if (dist[i] <= kthMin) {
 	            result[j++] = points[i];
 	        }
 	    }
@@ -76,7 +76,7 @@ class KClosestPoints{
 		p[5] = new Point(3,3);
 		p[6] = new Point(4.5,4);
 		p[7] = new Point(4.5,4.5);
-		Point[] res = closestkWithOrderStatistics(p,3);
+		Point[] res = FindKClosest(p,3);
 		for(int i=0;i<res.length;i++){
 			System.out.println(res[i].x + " " + res[i].y);
 		}

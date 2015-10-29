@@ -55,7 +55,7 @@ class SerializeDeserializeBinaryTree{
 			if(!arr[i].equals("#")){
 				left = new TreeNode(Integer.parseInt(arr[i])); 
 			}
-			if(++i < data.length() && !arr[i].equals("#")){
+			if(++i < arr.length && !arr[i].equals("#")){
 				right = new TreeNode(Integer.parseInt(arr[i]));
 			}
 			TreeNode parent = queue.poll(); 

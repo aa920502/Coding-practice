@@ -15,7 +15,7 @@ class RandomMaxElement{
 					ret = i;
 				}
 			}
-			else if(max==-1 || arr[i]>max){
+			else if(count==0 || arr[i]>max){
 				max = arr;
 				ret = i;
 				count=1;

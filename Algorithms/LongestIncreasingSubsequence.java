@@ -13,6 +13,7 @@ public class LongestIncreasingSubsequence {
   //Dynamic Programming
   public static int[] LIS(int[] A) {
     int[] m = new int[A.length];
+    
     for (int x = A.length - 2; x >= 0; x--) {
       for (int y = A.length - 1; y > x; y--) {
         if (A[x] < A[y] && m[x] <= m[y]) {

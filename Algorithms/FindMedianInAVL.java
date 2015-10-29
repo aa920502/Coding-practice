@@ -18,11 +18,10 @@ public class FindMedianInAVL {
 		if (k <= leftSize) {
 			return findKth(root.left, k);
 		}
-		if (k == leftSize + 1) {
-			return (double)root.val;
+		else if (k > leftSize + 1) {
+			return findKth(root.right, k - leftSize - 1);
 		}
-		return findKth(root.right, k - leftSize - 1);
-		
+		return (double)root.val;
 	}
 	
 	public static int countSize(TreeNode root) {

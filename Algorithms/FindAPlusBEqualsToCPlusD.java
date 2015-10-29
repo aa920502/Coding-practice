@@ -2,6 +2,7 @@
 
 	
 public class FindAPlusBEqualsToCPlusD {
+	//O(n^3)
 	public static int[] solve2(int[] nums) {
 		if (nums == null || nums.length < 4) {
 			return new int[]{-1, -1, -1, -1};

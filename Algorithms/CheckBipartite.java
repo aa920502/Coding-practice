@@ -4,8 +4,7 @@ class CheckBipartite{
 	//BFS
 	public boolean isBipartite(int adjacencyMatrix[][], int source){
         int[] colored = new int[numberOfVertices +  1];
-        for (int vertex = 1; vertex <= numberOfVertices; vertex++)
-        {
+        for (int vertex = 1; vertex <= numberOfVertices; vertex++){
             colored[vertex] = NO_COLOR;
         }
         colored[source] = RED;

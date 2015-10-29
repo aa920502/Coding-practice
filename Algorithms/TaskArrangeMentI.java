@@ -13,18 +13,19 @@ public class TaskArrangeMentI {
 		if (k == 0) return task.length();
 		
 		Map<Character, Integer> lastTime = new HashMap<Character, Integer>();
-		int count = 0;
+		int current = 0;
 		for (int i = 0; i < task.length(); i++) {
-			count++;
+			current++;
 			if (lastTime.containsKey(task.charAt(i))) {
 				int last = lastTime.get(task.charAt(i));
-				if (count - last <= k) {
-					count = last + k + 1;
+				// update current time if the task still needs cool down
+				if (current - last <= k) {
+					current = last + k + 1;
 				}
 			}
-			lastTime.put(task.charAt(i), count);
+			lastTime.put(task.charAt(i), current);
 		}
-		return count;
+		return current;
 	}
 
 	public static void main(String[] args){
