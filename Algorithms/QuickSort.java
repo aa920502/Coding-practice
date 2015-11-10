@@ -1,5 +1,7 @@
 // Quick sort implementation
 
+import java.util.*;
+
 class QuickSort{
 
 	//Standard Impl
@@ -57,4 +59,9 @@ class QuickSort{
         A[des] = temp;
     }
 
+    public static void main(String[] args){
+        int[] test = new int[]{4,2,1,3,2,9,10,7,17};
+        qs(test,0,test.length-1);
+        for(int i: test) System.out.print(i+",");
+    }
 }
